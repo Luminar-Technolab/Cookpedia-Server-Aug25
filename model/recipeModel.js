@@ -3,47 +3,47 @@ const mongoose = require('mongoose')
 const recipeSchema = new mongoose.Schema({
     name:{
         type:String,
-        reqred:true
+        required:true
     },
     ingredients:{
         type:Array,
-        reqred:true
+        required:true
     },
     instructions:{
         type:Array,
-        reqred:true
+        required:true
     },
     prepTimeMinutes:{
         type:Number,
-        reqred:true
+        required:true
     },
     cookTimeMinutes:{
         type:Number,
-        reqred:true
+        required:true
     },
     servings:{
         type:Number,
-        reqred:true
+        required:true
     },
     difficulty:{
         type:String,
-        reqred:true
+        required:true
     },
     cuisine:{
         type:String,
-        reqred:true
+        required:true
     },
     caloriesPerServing:{
         type:Number,
-        reqred:true
+        required:true
     },
     image:{
         type:String,
-        reqred:true
+        required:true
     },
     mealType:{
         type:Array,
-        reqred:true
+        required:true
     }
 })
 
