@@ -8,6 +8,8 @@ exports.saveRecipeToCollectionController = async (req,res)=>{
     const {name,image} = req.body
     try{
         const existingRecipe = await saveRecipes.findOne({recipeId:id,userMail})
+        console.log(existingRecipe);
+        
         if(existingRecipe){
             res.status(409).json("Recipe already in your collection, Add Another!!!")
         }else{
@@ -29,6 +31,19 @@ exports.getUserSavedCollectionController = async (req,res)=>{
     try{
         const allRecipes = await saveRecipes.find({userMail})
         res.status(200).json(allRecipes)
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error)
+    }
+}
+
+//remove recipe item collection
+exports.removeUserSavedItemController = async (req,res)=>{
+    console.log("Iniside removeUserSavedItemController");
+    const {id} = req.params
+    try{
+        const recipeDetails = await saveRecipes.findByIdAndDelete({_id:id})
+        res.status(200).json(recipeDetails)
     }catch(error){
         console.log(error);
         res.status(500).json(error)

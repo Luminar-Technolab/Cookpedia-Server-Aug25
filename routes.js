@@ -26,5 +26,7 @@ router.post('/downloads/:id',jwtMiddleware,downloadController.addToDownloadContr
 router.post('/save-recipe/:id',jwtMiddleware,saveRecipeController.saveRecipeToCollectionController)
 // get save recipe
 router.get('/save-recipes',jwtMiddleware,saveRecipeController.getUserSavedCollectionController)
+// remove save recipe
+router.delete('/save-recipes/:id',jwtMiddleware,saveRecipeController.removeUserSavedItemController)
 
 module.exports = router
