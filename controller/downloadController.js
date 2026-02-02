@@ -23,3 +23,16 @@ exports.addToDownloadController = async (req,res)=>{
         res.status(500).json(error)
     }
 }
+
+//get user doenload list
+exports.getUserDownloadListController = async (req,res)=>{
+    console.log("Iniside getUserDownloadListController");
+    const userMail = req.payload
+    try{
+        const allDownloadList = await downloads.find({userMail})
+         res.status(200).json(allDownloadList)
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error)
+    }
+}

@@ -14,3 +14,15 @@ exports.addFeedback = async (req,res)=>{
         res.status(500).json(err)
     }
 }
+
+//get approved  feedbacks
+exports.getApprovedFeedback = async (req,res)=>{
+    console.log("Insidie getApprovedFeedback controller");
+    try{
+        const approveFeedbacks = await feedbacks.find({status:{$eq:"approve"}})
+        res.status(200).json(approveFeedbacks)
+    }catch(err){
+        console.log(err);
+        res.status(500).json(err)
+    }
+}

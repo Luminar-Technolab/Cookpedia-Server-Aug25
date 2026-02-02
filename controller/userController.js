@@ -45,3 +45,19 @@ exports.loginController = async (req,res)=>{
         res.status(500).json(error)
     }
 }
+
+//update user picture
+exports.updateUserPictureController = async (req,res)=>{
+    console.log("Iniside updateUserPictureController");
+    const uploadPictureFile = req.file
+    const {id} = req.params
+    try{
+        const existingUser = await users.findOne({_id:id})
+        existingUser.picture = uploadPictureFile.filename
+        await existingUser.save()
+        res.status(200).json(existingUser)
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error)
+    }
+}
