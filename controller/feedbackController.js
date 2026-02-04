@@ -26,3 +26,31 @@ exports.getApprovedFeedback = async (req,res)=>{
         res.status(500).json(err)
     }
 }
+
+//get all  feedbacks
+exports.getAllFeedback = async (req,res)=>{
+    console.log("Insidie getAllFeedback controller");
+    try{
+        const allFeedbacks = await feedbacks.find()
+        res.status(200).json(allFeedbacks)
+    }catch(err){
+        console.log(err);
+        res.status(500).json(err)
+    }
+}
+
+//update   feedbacks status
+exports.updateFeedback = async (req,res)=>{
+    console.log("Insidie updateFeedback controller");
+    const {id} = req.params
+    const {status} = req.body
+    try{
+        const updateFeedback = await feedbacks.findById({_id:id})
+        updateFeedback.status = status
+        await updateFeedback.save()
+        res.status(200).json(updateFeedback)
+    }catch(err){
+        console.log(err);
+        res.status(500).json(err)
+    }
+}
